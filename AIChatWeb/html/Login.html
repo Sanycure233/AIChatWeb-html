@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录 - 欢迎来到Sany玖的AI聊天网站</title>
+  <link rel="stylesheet" href="../css/Login.css">
+
+</head>
+
+<body>
+  <!-- <h1>欢迎来到Sany玖的AI聊天网站</h1> -->
+  <div class="shell">
+    <!-- 注册栏 -->
+    <div class="container b-container" id="b-container">
+      <form action="#" method="post" class="form" id="a-form">
+        <h2 class="form-title title">注册账号</h2>
+        <span class="form-span">请选择注册方式</span>
+        <input type="text" class="form-input" name="name" placeholder="用户名">
+        <input type="text" class="form-input" name="count" placeholder="账号">
+        <input type="password" class="form-input" name="password" placeholder="密码">
+        <input type="submit" class="form-button button" value="注册">
+      </form>
+    </div>
+
+    <!-- 登录栏 -->
+    <div class="container a-container" id="a-container">
+      <form action="#" method="post" class="form" id="b-form">
+        <h2 class="form-title title">登录账号</h2>
+        <input type="text" class="form-input" name="count" placeholder="账号">
+        <input type="password" class="form-input" name="password" placeholder="密码">
+        <a href="" class="form-link">忘记密码？</a>
+        <input type="submit" class="form-button button" value="登录">
+      </form>
+    </div>
+
+    <!-- 装饰切换栏 -->
+    <div class="switch  " id="switch-ctn">
+      <div class="switch-container is-hidden" id="switch-c2">
+        <h2 class="switch-title title" style="letter-spacing: 0;">欢迎新用户加入!</h2>
+        <p class="switch-description description">已经有账号了吗？那就去登录吧！</p>
+        <button class="switch-button button switch-btn">去登录</button>
+      </div>
+
+      <div class="switch-container" id="switch-c1">
+        <h2 class="switch-title title" style="letter-spacing: 0;">欢迎访问!</h2>
+        <p class="switch-description description">去注册一个账号吧，来踏入我们的Ai世界！</p>
+        <button class="switch-button button switch-btn">去注册</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/Login.js"></script>
+</body>
+
+</html>

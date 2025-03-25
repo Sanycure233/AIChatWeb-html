@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试使用的</title>
+</head>
+
+<body>
+  <!-- text1 测试Ajax请求-->
+  <form action="#" method="post" class="form" id="b-form">
+    <h2 class="form-title title">登录账号</h2>
+    <input type="text" class="form-input" name="count" placeholder="账号">
+    <input type="password" class="form-input" name="password" placeholder="密码" autocomplete="current-password">
+    <a href="" class="form-link">忘记密码？</a>
+    <input type="submit" class="form-button button submit" value="登录">
+  </form>
+  <script>
+    document.querySelector("#b-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      console.log(1);
+      let formData = new FormData(this);
+      let account = formData.get("count");
+      let password = formData.get("password");
+      console.log("账号:", account);
+      console.log("密码:", password);
+    })
+  </script>
+</body>
+
+</html>

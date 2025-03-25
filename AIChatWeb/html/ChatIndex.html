@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sany玖的AIChat</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/ChatIndex.css">
+  <style>
+
+  </style>
+</head>
+
+<body data-theme="light">
+  <!-- 头部部分 -->
+  <header>
+
+  </header>
+
+  <!-- 主体部分 -->
+  <main>
+    <!-- 聊天框的功能部分 -->
+    <section class="section-function">
+      <!-- 主题切换 -->
+      <h1>主题切换</h1>
+      <div class="swich-theme">
+        <div class="theme light" data-theme="light"></div>
+        <div class="theme dark" data-theme="dark"></div>
+      </div>
+    </section>
+
+    <!-- 聊天框的内容部分 -->
+    <section class="section-container">
+      <div class="chat-container" id="chatContainer">
+        <!-- 对话展示部分 -->
+        <!-- <div class="message">
+          <div class="role"></div>
+          <div class="content">
+            <div class="role-name">栗子</div>
+            <p>
+              
+            </p>
+          </div>
+        </div> -->
+      </div>
+
+      <!-- 文本输入部分 -->
+      <div class="input-container">
+        <div class="input-wrapper">
+          <textarea id="userInput" placeholder="输入你的消息..." rows="4"></textarea>
+          <button onclick="sendMessage()">发送</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 聊天框的个人信息部分 -->
+    <section class="section-user">
+      <div class="user-base">
+        <div class="avatar"></div>
+        <div class="user-ID">
+          <div>
+            <div class="user-name">ID:Sany玖天下第一</div>
+            <div class="user-vip-0 user-vip-1">VIP</div>
+          </div>
+        </div>
+        <div class="user-count">2333</div>
+        <div class="box"></div>
+        <div class="log-out">
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../js/ChatIndex.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,245 @@
+:root {
+  --speed: 0.9s;
+  --opacity: 0.9;
+}
+
+/* 把我们所有标签的内外边距清零 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+/* em 和 i 斜体的文字不倾斜 */
+em,
+i {
+  font-style: normal
+}
+
+/* 去掉li 的小圆点 */
+li {
+  list-style: none
+}
+
+img {
+  /* border 0 照顾低版本浏览器 如果 图片外面包含了链接会有边框的问题 */
+  border: 0;
+  /* 取消图片底侧有空白缝隙的问题 */
+  vertical-align: middle
+}
+
+button {
+  /* 当我们鼠标经过button 按钮的时候，鼠标变成小手 */
+  cursor: pointer
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  font-size: 12px;
+  background-color: #ecf0f3;
+  color: #a0a5a8;
+  background-image: url(../imgs/bg/0.png);
+  background-size: cover;
+}
+
+/* 主界面 */
+
+.shell {
+  position: relative;
+  width: 1000px;
+  min-width: 1000px;
+  min-height: 600px;
+  height: 600px;
+  padding: 25px;
+  background-color: #ecf0f3;
+  box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: var(--opacity);
+}
+
+/* 响应式 根据宽屏改变大小 */
+@media(max-width:1200px) {
+  .shell {
+    transform: scale(0.7);
+  }
+}
+
+@media(max-width:1000px) {
+  .shell {
+    transform: scale(0.6);
+  }
+}
+
+@media(max-width:800px) {
+  .shell {
+    transform: scale(0.5);
+  }
+}
+
+@media(max-width:600px) {
+  .shell {
+    transform: scale(0.4);
+  }
+}
+
+/* 登录注册栏 */
+.container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  padding: 25px;
+  background-color: #ecf0f3;
+  transition: var(--speed);
+}
+
+.a-container {
+
+  left: calc(100% - 600px);
+  z-index: 100;
+}
+
+
+.b-container {
+  left: calc(100% - 600px);
+  z-index: 0;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* 输入框 */
+.form-input {
+  width: 350px;
+  height: 40px;
+  margin: 8px 0;
+  padding-left: 25px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  border: none;
+  outline: none;
+  background-color: #ecf0f3;
+  transform: 0.25s ease;
+  border-radius: 8px;
+  box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
+}
+
+.form-input:focus {
+  box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+}
+
+.form-span {
+  margin-top: 30px;
+  margin-bottom: 12px;
+}
+
+.form-link {
+  color: #181818;
+  font-size: 15px;
+  margin-top: 25px;
+  border-bottom: 1px solid #a0a5a8;
+  line-height: 2;
+}
+
+.form-link:hover {
+  color: #4B70E2;
+}
+
+.title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #181818;
+  letter-spacing: 10px;
+}
+
+.description {
+  font-size: 14px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.button {
+  width: 180px;
+  height: 50px;
+  border-radius: 25px;
+  margin-top: 50px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.15px;
+  background-color: #4B70E2;
+  color: #f9f9f9;
+  box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
+  border: none;
+  outline: none;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+/* 切换栏 */
+.switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  padding: 50px;
+  transition: var(--speed);
+  background-color: #ecf0f3;
+  overflow: hidden;
+  box-shadow: 4px 4px 10px #d1d9e6, -4px -4px 10px #d1d9e6;
+  z-index: 200;
+}
+
+.switch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  padding: 50px 55px;
+  transition: var(--speed);
+}
+
+.is-txr {
+  left: 600px;
+  transition: var(--speed);
+  transform-origin: left;
+}
+
+.is-txl {
+  left: 0;
+  transition: var(--speed);
+  transform-origin: right;
+}
+
+.is-z {
+  z-index: 200;
+  transition: var(--speed);
+}
+
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: var(--speed);
+}
