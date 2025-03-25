@@ -3,27 +3,17 @@ const userInput = document.getElementById('userInput');
 
 
 //token 验证
-// 通过key获取 Cookie
-function cookieGetByKey(key) {
-  const name = `${key}=`;
-  const cookieArray = document.cookie.split(';');
-
-  for (let i = 0; i < cookieArray.length; i++) {
-    const map = cookieArray[i].split('=');
-    if (map[0] === key) {
-      return map[1];
-    }
-  }
-  return null;  // 如果没有找到指定的 Cookie，返回 null
-}
-
 document.addEventListener("DOMContentLoaded", function () {
   const token = cookieGetByKey("token"); // 获取 Token
   if (!token) {
-    // 如果没有 Token，跳转到登录页，并记录当前 URL
     window.location.href = "login.html";
   } else {
-    console.log("用户已登录，允许访问");
+    ajaxCustom('GET', 'login/1', null, new Map().set("token", token), (responseJson) => {
+      console.log(responseJson)
+      if (responseJson.code !== '200') {
+        window.location.href = "login.html";
+      }
+    })
   }
 });
 // 对话功能实现
