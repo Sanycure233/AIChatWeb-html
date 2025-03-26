@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ajaxCustom('GET', 'login/1', null, new Map().set("token", token), (responseJson) => {
       console.log(responseJson)
       if (responseJson.code !== '200') {
-        window.location.href = "login.html";
+        // window.location.href = "login.html";
       }
     })
   }

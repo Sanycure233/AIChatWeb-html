@@ -34,36 +34,38 @@ function ajaxCustom(method
   , headMap
   // 传入一个回调函数防止异步请求拿不到数据
   , callback) {
-  // console.log(method + urlPrefix + urlSuffix)
-  // // xhr.open(method, urlPrefix + urlSuffix, true);
   xhr.open(method, urlPrefix + urlSuffix, true);
-  xhr.send()
-  // xhr.onreadystatechange = function () {
-  //   if (xhr.readyState === XMLHttpRequest.DONE) {
-  //     if (xhr.status === 200) {
-  //       callback(JSON.parse(xhr.responseText));
-  //     } else {
-  //       console.error('请求失败:', xhr.status);
-  //     }
-  //   }
-  // };
+  console.log(headMap);
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        callback(JSON.parse(xhr.responseText));
+      } else {
+        console.error('请求失败:', xhr.status);
+      }
+    }
+  };
   // if (headMap != null) {
-  //   headMap.forEach((key, value) => {
+  //   headMap.forEach((value, key) => {
   //     xhr.setRequestHeader(key, value);
   //   })
   // }
 
-  // //设置请求体为Json
-  // if (method === 'POST') {
-  //   console.log("发送了POST请求")
-  //   xhr.setRequestHeader("Content-Type", "application/json")
-  //   // 将 Map 转换为对象
-  //   const obj = Object.fromEntries(dataMap);
-  //   // 将对象转换为 JSON 字符串
-  //   const jsonString = JSON.stringify(obj);
-  //   xhr.send(jsonString)
-  // } else {
-  //   console.log(`发送了${method}请求`)
-  //   xhr.send()
-  // }
+  //设置请求体为Json
+  if (method === 'POST') {
+    console.log("发送了POST请求")
+    xhr.setRequestHeader("Content-Type", "application/json")
+    // 将 Map 转换为对象
+    const obj = Object.fromEntries(dataMap);
+    // 将对象转换为 JSON 字符串
+    const jsonString = JSON.stringify(obj);
+    xhr.send(jsonString)
+  } else {
+    console.log(`发送了${method}请求`)
+    if (headMap && headMap.has("token")) {
+      xhr.setRequestHeader("token", headMap.get("token"));
+    }
+    xhr.send()
+  }
 }
