@@ -39,10 +39,9 @@ document.querySelector("#b-form").addEventListener("submit", async function (eve
   // 处理响应
   ajaxCustom('POST', 'login', dataMap, null, (responseJson) => {
     if (responseJson.code === '200') {
-      // //将用户信息存放进浏览器本地存储中
-      // localStorage.setItem('userMsg', responseJson)
       //加问号防止data为空报错
       cookieAdd('token', String(responseJson.data?.token));
+      cookieAdd('userID',String(responseJson.data?.Id));
       alert("登录成功")
       window.location.href = "ChatIndex.html"
     } else {

@@ -8,7 +8,7 @@ function cookieAdd(key, value, expiresInDays = 1, path = '/') {
 }
 
 // 删除 Cookie
-function cookieDelete(path = '/') {
+function cookieDelete(key='token',path = '/') {
   // 通过设置过期时间为过去的时间来删除 Cookie
   document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path};`;
 }
@@ -26,7 +26,7 @@ function cookieGetByKey(key) {
 }
 
 // 前端向后端发送请求的方法
-const xhr = new XMLHttpRequest();
+
 const urlPrefix = "http://localhost:8080/"
 function ajaxCustom(method
   , urlSuffix
@@ -34,24 +34,21 @@ function ajaxCustom(method
   , headMap
   // 传入一个回调函数防止异步请求拿不到数据
   , callback) {
+  const xhr = new XMLHttpRequest();
   xhr.open(method, urlPrefix + urlSuffix, true);
-  console.log(headMap);
-
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
+        console.log(xhr.responseText)
         callback(JSON.parse(xhr.responseText));
       } else {
         console.error('请求失败:', xhr.status);
       }
     }
   };
-  // if (headMap != null) {
-  //   headMap.forEach((value, key) => {
-  //     xhr.setRequestHeader(key, value);
-  //   })
-  // }
-
+  if (headMap && headMap.has("token")) {
+    xhr.setRequestHeader("token", headMap.get("token"));
+  }
   //设置请求体为Json
   if (method === 'POST') {
     console.log("发送了POST请求")
@@ -63,9 +60,6 @@ function ajaxCustom(method
     xhr.send(jsonString)
   } else {
     console.log(`发送了${method}请求`)
-    if (headMap && headMap.has("token")) {
-      xhr.setRequestHeader("token", headMap.get("token"));
-    }
     xhr.send()
   }
 }

@@ -68,7 +68,102 @@ header {
 .section-function .dark {
   background-color: #000000;
 }
+/*  历史对话部分  */
+.history{
+  width: 450px;
+  background-color: var(--section-background);
+  /* background-color: #fff; */
+}
+.history-child{
+  width: 80%;
+  height: 60px;
+  margin: 0 auto;
+  margin-top: 45px;
+  background-color: whitesmoke;
+  border-radius: 20px;
+}
 
+.history .avatar{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-image: url(../imgs/Ai-img/00.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  vertical-align: top;
+}
+.history .description{
+  display: inline-block;
+  position: relative;
+  margin-left: 20px;
+  height: 60px;
+  width: 100px;
+}
+
+.history .ai-name{
+  position: absolute;
+  font-size: 20px;
+  font-weight: 600;
+  top: 10px;
+  color: #000000;
+}
+.history .ai-description{
+  position: absolute;
+  font-size: 15px;
+  font-weight: 600;
+  bottom: 3px;
+  color: #413f3f;
+}
+
+.history .delete-conversation{
+  vertical-align: top;
+  display: inline-block;
+  width: 40px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #8f0101;
+  text-align: center;
+  line-height: 30px;
+  font-size: 10px;
+  color: #fff;
+  margin-top: 15px;
+  margin-left: 100px;
+}
+/* 添加新对话 */
+.add-conversation{
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  background-color: #f1f1f1;
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+  line-height: 70px;
+  margin: 45px auto;
+  color: #000000;
+}
+.add-conversation:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+/* 自定义性格 */
+.custom-ai{
+  width: 100px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+  text-align: center;
+  line-height: 50px;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.custom-ai:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
 
 /* 主体部分 -------------- 聊天框的内容部分  */
 .section-container {
@@ -111,12 +206,15 @@ header {
 .section-container .chat-container .message .role {
   width: 80px;
   height: 80px;
-  border-radius: 4px;
-  background-image: url(../imgs/Ai-img/00.jpg);
+  border-radius: 40px;
   background-size: cover;
 }
 
 .section-container .chat-container .message .user-role {
+  background-image: url(../imgs/avator/00.jpg);
+}  
+
+.section-container .chat-container .message .ai-role{
   background-image: url(../imgs/Ai-img/00.jpg);
 }
 
