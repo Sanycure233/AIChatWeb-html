@@ -18,7 +18,7 @@ function cookieGetByKey(key) {
   const cookieArray = document.cookie.split('; ');
   for (let i = 0; i < cookieArray.length; i++) {
     const map = cookieArray[i].split('=');
-    if (map[0] === 'token') {
+    if (map[0] === key) {
       return map[1]
     }
   }
@@ -58,8 +58,33 @@ function ajaxCustom(method
     // 将对象转换为 JSON 字符串
     const jsonString = JSON.stringify(obj);
     xhr.send(jsonString)
+    console.log(jsonString)
   } else {
     console.log(`发送了${method}请求`)
     xhr.send()
   }
+}
+// 传输文件
+function ajaxCustomFile(urlSuffix
+  , formData
+  , headMap
+  // 传入一个回调函数防止异步请求拿不到数据
+  , callback) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', urlPrefix + urlSuffix, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText)
+        callback(JSON.parse(xhr.responseText));
+      } else {
+        console.error('请求失败:', xhr.status);
+      }
+    }
+  };
+  if (headMap && headMap.has("token")) {
+    xhr.setRequestHeader("token", headMap.get("token"));
+  }
+  //设置请求体为Json
+    xhr.send(formData);
 }

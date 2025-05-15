@@ -41,7 +41,7 @@ document.querySelector("#b-form").addEventListener("submit", async function (eve
     if (responseJson.code === '200') {
       //加问号防止data为空报错
       cookieAdd('token', String(responseJson.data?.token));
-      cookieAdd('userID',String(responseJson.data?.Id));
+      cookieAdd('userID',String(responseJson.data?.id));
       alert("登录成功")
       window.location.href = "ChatIndex.html"
     } else {
@@ -59,6 +59,16 @@ document.querySelector("#a-form").addEventListener("submit", async function (eve
   dataMap.set("name", formData.get("name"))
   dataMap.set("count", formData.get("count"))
   dataMap.set("password", formData.get("password"))
+  
+  // 默认头像
+  dataMap.set("avatar","../imgs/avatar/00.jpg")
+  dataMap.set("aiAvatar","../imgs/ai_avatar/00.jpg")
+
+  //设置默认对话次数
+  dataMap.set("messageCount",30)
+  //设置默认AI描述
+  dataMap.set("description","你是一个AI机器人")
+  
   // 处理响应
   ajaxCustom('POST', 'register', dataMap, null, (responseJson) => {
     if (responseJson.code === '200') {

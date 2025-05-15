@@ -31,49 +31,38 @@
 
       <!-- 历史对话 -->
       <h1>历史对话</h1>
-      <div class="history">
-        <div class="history-child">
-          <div class="avatar"></div>
-          <div class="description">
-            <div class="ai-name">栗子</div>
-            <div class="ai-description">对话1</div>
-          </div>
-          <div class="delete-conversation">—</div>
-        </div>
-        <div class="history-child">
-          <div class="avatar"></div>
-          <div class="description">
-            <div class="ai-name">栗子</div>
-            <div class="ai-description">对话2</div>
-          </div>
-          <div class="delete-conversation">—</div>
-        </div>
+      <div class="history" id="history-conversation">
       </div>
       <!-- 添加新对话 -->
-       <div class="add-conversation">+</div>
-
+      <div class="add-conversation" id="add-conversation">+</div>
       <!-- 自定义性格 -->
-
-      <div class="custom-ai">自定义</div>
+      <div class="custom-ai" id="custom-ai">自定义</div>
+      <!-- 自定义的弹窗 -->
+      <div class="custom-container">
+        <form action="#" method="post" class="custom-box" id="custom-form" style="display: none;">
+          <span class="close-btn" id="closeBtn">×</span>
+          <h2 class="form-title">⋆⁺₊⋆ 性格定制 ⋆⁺₊⋆</h2>
+          <div class="description-container">
+            <textarea id="description-input" name="description" placeholder="描述..." rows="4"></textarea>
+          </div>
+          <div class="upload-ai-avatar">
+            <label>
+              <input type="file" name="avatar">
+              选择对方的头像
+            </label>
+          </div>
+          <input type="submit" class="form-button" value="ฅ^•ﻌ•^ฅ 保存设置">
+        </form>
+      </div>
     </section>
 
     <!-- 聊天框的内容部分 -->
     <section class="section-container">
       <div class="chat-container" id="chatContainer">
-        <!-- 对话展示部分 -->
-        <!-- <div class="message">
-          <div class="role"></div>
-          <div class="content">
-            <div class="role-name">栗子</div>
-            <p>
-              
-            </p>
-          </div>
-        </div> -->
       </div>
 
       <!-- 文本输入部分 -->
-      <div class="input-container">
+      <div class="input-container" style="display: none;">
         <div class="input-wrapper">
           <textarea id="userInput" placeholder="输入你的消息..." rows="4"></textarea>
           <button onclick="sendMessage()">发送</button>
@@ -82,17 +71,49 @@
     </section>
 
     <!-- 聊天框的个人信息部分 -->
+    <!-- 更换头像弹窗 -->
+    <!-- 模态窗口 -->
+    <div class="modal-mask" id="modalMask">
+      <div class="avatar-modal">
+        <span class="close-btn" onclick="closeModal()">×</span>
+        <h2 style="color: #ff6b81; margin-bottom: 15px;">上传新头像</h2>
+
+        <div class="preview-area" id="previewArea">
+          <span style="color: #ff85a2;">点击选择图片</span>
+        </div>
+
+        <input type="file" id="avatar-input" accept="image/*">
+
+        <div class="action-btns">
+          <button class="cancel-btn" onclick="closeModal()">取消</button>
+          <button class="confirm-btn" onclick="uploadAvatar()">确认上传</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗结构 -->
+    <!-- 弹窗结构 -->
+    <div class="activation-modal" id="activationModal">
+      <div class="modal-content">
+        <span class="close-vip">&times;</span>
+        <h2>VIP 激活</h2>
+        <input type="text" id="activationCode" placeholder="请输入激活码">
+        <p class="error-msg" id="errorMsg"></p>
+        <button class="confirm-vip" onclick="validateCode()">立即激活</button>
+      </div>
+    </div>
+
     <section class="section-user">
       <div class="user-base">
-        <div class="avatar"></div>
+        <div class="avatar" onclick="openModal()"></div>
         <div class="user-ID">
           <div>
             <div class="user-name"></div>
-            <div class="user-vip-0 ">VIP</div>
+            <div class="user-vip-0 " onclick="getVIP()">VIP</div>
           </div>
         </div>
-        <div class="user-count">2333</div>
-        <div class="box"></div>
+        <div class="user-count"></div>
+        <div class="user-message-count"></div>
         <div class="log-out">
         </div>
       </div>

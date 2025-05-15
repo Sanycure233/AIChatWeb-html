@@ -80,7 +80,12 @@ header {
   margin: 0 auto;
   margin-top: 45px;
   background-color: whitesmoke;
-  border-radius: 20px;
+  border-radius: 30px;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+.history-child:hover{
+ background-color: rgb(0, 162, 255);
 }
 
 .history .avatar{
@@ -88,7 +93,6 @@ header {
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  background-image: url(../imgs/Ai-img/00.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   vertical-align: top;
@@ -130,6 +134,9 @@ header {
   margin-top: 15px;
   margin-left: 100px;
 }
+.history .delete-conversation:hover{
+  transform: scale(1.1);
+}
 /* 添加新对话 */
 .add-conversation{
   width: 70px;
@@ -148,6 +155,8 @@ header {
   transform: scale(1.1);
 }
 
+
+
 /* 自定义性格 */
 .custom-ai{
   width: 100px;
@@ -163,6 +172,150 @@ header {
 .custom-ai:hover{
   cursor: pointer;
   transform: scale(1.1);
+}
+
+/* 弹窗样式 */
+.custom-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+/* 关闭按钮 */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: #ff8b94;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    transform: rotate(90deg);
+    color: #ff6b9d;
+}
+
+.custom-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(255, 182, 193, 0.15);
+    width: 1200px;
+    border: 1px solid rgba(255, 192, 203, 0.3);
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.form-title {
+    color: #ff8b94;
+    font-family: 'Hiragino Maru Gothic ProN', cursive;
+    text-align: center;
+    font-size: 26px;
+    margin: 0 0 25px 0;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.form-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #ffd3d3 0%, #ff8b94 50%, #ffd3d3 100%);
+}
+
+#description-input {
+    width: 100%;
+    padding: 12px 18px;
+    border: 1px solid #ffe5e9;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+    background: #fff;
+    color: #ff8b94;
+}
+
+#description-input:focus {
+    border-color: #ffb3c1;
+    box-shadow: 0 0 8px rgba(255, 155, 170, 0.2);
+    outline: none;
+}
+
+#description-input::placeholder {
+    color: #ffd3d3;
+}
+
+.upload-ai-avatar label {
+    display: flex;
+    align-items: center;
+    color: #ff8b94;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    background: #fff5f7;
+}
+
+.upload-ai-avatar label:hover {
+    background: #ffeff1;
+}
+
+.upload-ai-avatar input[type="file"] {
+    display: none;
+}
+
+.upload-ai-avatar label::before {
+    content: '🎀';
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.form-button {
+    background: linear-gradient(135deg, #ffd3d3, #ffb3c1);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+    font-family: 'Hiragino Maru Gothic ProN', sans-serif;
+}
+
+.form-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 155, 170, 0.3);
+}
+
+/* 装饰性元素 */
+.custom-box::before {
+    content: '✧･ﾟ';
+    position: absolute;
+    color: #ffd3d3;
+    font-size: 24px;
+    top: -15px;
+    left: -15px;
+    transform: rotate(-15deg);
+}
+
+.custom-box::after {
+    content: '✧･ﾟ';
+    position: absolute;
+    color: #ffd3d3;
+    font-size: 24px;
+    bottom: -15px;
+    right: -15px;
+    transform: rotate(15deg);
 }
 
 /* 主体部分 -------------- 聊天框的内容部分  */
@@ -215,7 +368,7 @@ header {
 }  
 
 .section-container .chat-container .message .ai-role{
-  background-image: url(../imgs/Ai-img/00.jpg);
+  background-image: url(../imgs/ai_avatar/00.jpg);
 }
 
 /* 设置对话框样式 */
@@ -295,7 +448,6 @@ header {
   background-color: aliceblue;
   margin: 0 auto;
   margin-top: 30px;
-  background-image: url(../imgs/avator/00.jpg);
   background-size: cover;
 }
 
@@ -341,11 +493,17 @@ header {
   font-weight: 700;
 }
 
+.user-message-count{
+  text-align: center;
+  margin-top: 30px;
+  user-select: none;
+}
+
 .section-user .log-out {
   height: 80px;
   width: 80px;
   margin-left: 200px;
-  margin-top: 500px;
+  margin-top: 420px;
   background-image: url(../imgs/icon/logout.png);
   background-color: rgb(27, 35, 53);
   background-repeat: no-repeat;
@@ -356,4 +514,167 @@ header {
 
 .section-user .log-out:hover {
   transform: scale(1.1);
+}
+
+/* 修改个人头像弹窗 */
+/* 模态窗口遮罩 */
+.modal-mask {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* 模态窗口主体 */
+.avatar-modal {
+  background-color: #fff0f5;
+  padding: 25px;
+  border-radius: 15px;
+  width: 400px;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 关闭按钮 */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #ff85a2;
+}
+
+/* 预览区域 */
+.preview-area {
+  border: 2px dashed #ffb6c1;
+  height: 200px;
+  margin: 20px 0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 操作按钮容器 */
+.action-btns {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+/* 确认/取消按钮 */
+.confirm-btn,
+.cancel-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.confirm-btn {
+  background-color: #ffb6c1;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #ff9aa3;
+}
+
+.cancel-btn {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.cancel-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* 隐藏的input */
+#avatar-input {
+  display: none;
+}
+
+/* VIP弹窗 */
+/* 浅粉色主题样式 */
+.activation-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-content {
+  background-color: #fff5f5; /* 浅粉色背景 */
+  margin: 15% auto;
+  padding: 25px;
+  width: 350px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(255, 192, 203, 0.3);
+  position: relative;
+}
+
+.activation-modal h2 {
+  color: #000000; /* 粉红色标题 */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#activationCode {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #ffb6c1;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+}
+
+.confirm-vip {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s;
+}
+
+.confirm-vip:hover {
+  transform: scale(1.02);
+}
+
+.close-vip {
+  color: #ff69b4;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-vip:hover {
+  color: #ff1493;
+}
+
+.error-msg {
+  color: #ff4444;
+  font-size: 14px;
+  height: 20px;
+  margin: 5px 0;
+  text-align: center;
 }
